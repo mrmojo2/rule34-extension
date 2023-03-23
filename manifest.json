@@ -1,0 +1,27 @@
+{
+    "manifest_version":3,
+    "name":"Rule34 Utility Extension",
+    "description":"do bunch of stuffs in rule34 site",
+    "version":"1.0.0",
+    "icons":{
+        "16":"icon.png",
+        "48":"icon.png",
+        "128":"icon.png"
+    },
+    "background":{
+        "service_worker":"background.js"
+    },
+    "permissions":["contextMenus","tabs","storage"],
+    "content_scripts":[
+        {
+            "matches":["https://rule34.xxx/index.php?page=post&s=list&tags=*"],
+            "js":["content_scripts/getImageIds.js"]
+        },
+        {
+            "matches": ["https://rule34.xxx/index.php?page=post&s=view&id=*"],
+            "js": ["content_scripts/navigate.js"]
+        }
+        
+    ],
+    "incognito":"split"
+}
